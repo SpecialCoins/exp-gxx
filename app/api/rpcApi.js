@@ -3,7 +3,6 @@ var debug = require('debug');
 var debugLog = debug("btcexp:rpc");
 
 var async = require("async");
-var semver = require("semver");
 
 var utils = require("../utils.js");
 var config = require("../config.js");
@@ -23,10 +22,6 @@ var rpcQueue = async.queue(function(task, callback) {
 	});
 
 }, config.rpcConcurrency);
-
-var minRpcVersions = {getblockstats:"0.17.0"};
-
-global.rpcStats = {};
 
 
 
@@ -50,60 +45,12 @@ function getMiningInfo() {
 	return getRpcData("getmininginfo");
 }
 
-function getUptimeSeconds() {
-	return getRpcData("uptime");
-}
-
 function getPeerInfo() {
 	return getRpcData("getpeerinfo");
 }
 
 function getMempoolTxids() {
 	return getRpcDataWithParams({method:"getrawmempool", parameters:[false]});
-}
-
-function getSmartFeeEstimate(mode="CONSERVATIVE", confTargetBlockCount) {
-	return getRpcDataWithParams({method:"estimatesmartfee", parameters:[confTargetBlockCount, mode]});
-}
-
-function getNetworkHashrate(blockCount=144) {
-	return getRpcDataWithParams({method:"getnetworkhashps", parameters:[blockCount]});
-}
-
-function getBlockStats(hash) {
-	if (semver.gte(global.btcNodeSemver, minRpcVersions.getblockstats)) {
-		if (hash == coinConfig.genesisBlockHashesByNetwork[global.activeBlockchain] && coinConfig.genesisBlockStatsByNetwork[global.activeBlockchain]) {
-			return new Promise(function(resolve, reject) {
-				resolve(coinConfig.genesisBlockStatsByNetwork[global.activeBlockchain]);
-			});
-
-		} else {
-			return getRpcDataWithParams({method:"getblockstats", parameters:[hash]});
-		}
-	} else {
-		// unsupported
-		return unsupportedPromise(minRpcVersions.getblockstats);
-	}
-}
-
-function getBlockStatsByHeight(height) {
-	if (semver.gte(global.btcNodeSemver, minRpcVersions.getblockstats)) {
-		if (height == 0 && coinConfig.genesisBlockStatsByNetwork[global.activeBlockchain]) {
-			return new Promise(function(resolve, reject) {
-				resolve(coinConfig.genesisBlockStatsByNetwork[global.activeBlockchain]);
-			});
-			
-		} else {
-			return getRpcDataWithParams({method:"getblockstats", parameters:[height]});
-		}
-	} else {
-		// unsupported
-		return unsupportedPromise(minRpcVersions.getblockstats);
-	}
-}
-
-function getUtxoSetSummary() {
-	return getRpcData("gettxoutsetinfo");
 }
 
 function getRawMempool() {
@@ -170,25 +117,6 @@ function getBlockByHeight(blockHeight) {
 	});
 }
 
-function getBlockHeaderByHash(blockhash) {
-	return getRpcDataWithParams({method:"getblockheader", parameters:[blockhash]});
-}
-
-function getBlockHeaderByHeight(blockHeight) {
-	return new Promise(function(resolve, reject) {
-		getRpcDataWithParams({method:"getblockhash", parameters:[blockHeight]}).then(function(blockhash) {
-			getBlockHeaderByHash(blockhash).then(function(blockHeader) {
-				resolve(blockHeader);
-
-			}).catch(function(err) {
-				reject(err);
-			});
-		}).catch(function(err) {
-			reject(err);
-		});
-	});
-}
-
 function getBlockByHash(blockHash) {
 	debugLog("getBlockByHash: %s", blockHash);
 
@@ -197,7 +125,6 @@ function getBlockByHash(blockHash) {
 			getRawTransaction(block.tx[0]).then(function(tx) {
 				block.coinbaseTx = tx;
 				block.totalFees = utils.getBlockTotalFeesFromCoinbaseTxAndBlockHeight(tx, block.height);
-				block.subsidy = coinConfig.blockRewardFunction(block.height, global.activeBlockchain);
 				block.miner = utils.getMinerFromCoinbaseTx(tx);
 
 				resolve(block);
@@ -279,7 +206,7 @@ function getUtxo(txid, outputIndex) {
 	});
 }
 
-function getMempoolTxDetails(txid, includeAncDec=true) {
+function getMempoolTxDetails(txid) {
 	debugLog("getMempoolTxDetails: %s", txid);
 
 	var promises = [];
@@ -297,29 +224,27 @@ function getMempoolTxDetails(txid, includeAncDec=true) {
 		});
 	}));
 
-	if (includeAncDec) {
-		promises.push(new Promise(function(resolve, reject) {
-			getRpcDataWithParams({method:"getmempoolancestors", parameters:[txid]}).then(function(result) {
-				mempoolDetails.ancestors = result;
+	promises.push(new Promise(function(resolve, reject) {
+		getRpcDataWithParams({method:"getmempoolancestors", parameters:[txid]}).then(function(result) {
+			mempoolDetails.ancestors = result;
 
-				resolve();
+			resolve();
 
-			}).catch(function(err) {
-				reject(err);
-			});
-		}));
+		}).catch(function(err) {
+			reject(err);
+		});
+	}));
 
-		promises.push(new Promise(function(resolve, reject) {
-			getRpcDataWithParams({method:"getmempooldescendants", parameters:[txid]}).then(function(result) {
-				mempoolDetails.descendants = result;
+	promises.push(new Promise(function(resolve, reject) {
+		getRpcDataWithParams({method:"getmempooldescendants", parameters:[txid]}).then(function(result) {
+			mempoolDetails.descendants = result;
 
-				resolve();
+			resolve();
 
-			}).catch(function(err) {
-				reject(err);
-			});
-		}));
-	}
+		}).catch(function(err) {
+			reject(err);
+		});
+	}));
 
 	return new Promise(function(resolve, reject) {
 		Promise.all(promises).then(function() {
@@ -342,8 +267,6 @@ function getRpcMethodHelp(methodName) {
 
 
 function getRpcData(cmd) {
-	var startTime = new Date().getTime();
-
 	return new Promise(function(resolve, reject) {
 		debugLog(`RPC: ${cmd}`);
 
@@ -358,26 +281,10 @@ function getRpcData(cmd) {
 
 					callback();
 
-					logStats(cmd, false, new Date().getTime() - startTime, false);
-
-					return;
-				}
-
-				if (result.name && result.name == "RpcError") {
-					utils.logError("3084yh4r7ge", result, {cmd:cmd});
-
-					reject(result);
-
-					callback();
-
-					logStats(cmd, false, new Date().getTime() - startTime, false);
-
 					return;
 				}
 
 				resolve(result);
-
-				logStats(cmd, false, new Date().getTime() - startTime, true);
 
 				callback();
 			});
@@ -388,8 +295,6 @@ function getRpcData(cmd) {
 }
 
 function getRpcDataWithParams(request) {
-	var startTime = new Date().getTime();
-
 	return new Promise(function(resolve, reject) {
 		debugLog(`RPC: ${JSON.stringify(request)}`);
 
@@ -402,26 +307,10 @@ function getRpcDataWithParams(request) {
 
 					callback();
 
-					logStats(request.method, true, new Date().getTime() - startTime, false);
-
-					return;
-				}
-
-				if (result.name && result.name == "RpcError") {
-					utils.logError("23983euewf8d", result, {result:result, headers:resHeaders});
-
-					reject(result);
-
-					callback();
-
-					logStats(request.method, true, new Date().getTime() - startTime, false);
-
 					return;
 				}
 
 				resolve(result[0]);
-
-				logStats(request.method, true, new Date().getTime() - startTime, true);
 
 				callback();
 			});
@@ -429,32 +318,6 @@ function getRpcDataWithParams(request) {
 		
 		rpcQueue.push({rpcCall:rpcCall});
 	});
-}
-
-function unsupportedPromise(minRpcVersionNeeded) {
-	return new Promise(function(resolve, reject) {
-		resolve({success:false, error:"Unsupported", minRpcVersionNeeded:minRpcVersionNeeded});
-	});
-}
-
-function logStats(cmd, hasParams, dt, success) {
-	if (!global.rpcStats[cmd]) {
-		global.rpcStats[cmd] = {count:0, withParams:0, time:0, successes:0, failures:0};
-	}
-
-	global.rpcStats[cmd].count++;
-	global.rpcStats[cmd].time += dt;
-
-	if (hasParams) {
-		global.rpcStats[cmd].withParams++;
-	}
-
-	if (success) {
-		global.rpcStats[cmd].successes++;
-
-	} else {
-		global.rpcStats[cmd].failures++;
-	}
 }
 
 
@@ -471,19 +334,9 @@ module.exports = {
 	getUtxo: getUtxo,
 	getMempoolTxDetails: getMempoolTxDetails,
 	getRawMempool: getRawMempool,
-	getUptimeSeconds: getUptimeSeconds,
 	getHelp: getHelp,
 	getRpcMethodHelp: getRpcMethodHelp,
 	getAddress: getAddress,
 	getPeerInfo: getPeerInfo,
-	getChainTxStats: getChainTxStats,
-	getSmartFeeEstimate: getSmartFeeEstimate,
-	getUtxoSetSummary: getUtxoSetSummary,
-	getNetworkHashrate: getNetworkHashrate,
-	getBlockStats: getBlockStats,
-	getBlockStatsByHeight: getBlockStatsByHeight,
-	getBlockHeaderByHash: getBlockHeaderByHash,
-	getBlockHeaderByHeight: getBlockHeaderByHeight,
-
-	minRpcVersions: minRpcVersions
+	getChainTxStats: getChainTxStats
 };

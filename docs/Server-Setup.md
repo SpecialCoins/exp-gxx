@@ -1,4 +1,4 @@
-### Setup of https://explorer.btc21.org on Ubuntu 16.04
+### Setup of https://btc-explorer.com on Ubuntu 16.04
 
     apt update
     apt upgrade
@@ -11,9 +11,9 @@
     apt upgrade
     apt install python-certbot-nginx
     
-Copy content from [./explorer.btc21.org.conf](./explorer.btc21.org.conf) into `/etc/nginx/sites-available/explorer.btc21.org.conf`
+Copy content from [./btc-explorer.com.conf](./btc-explorer.com.conf) into `/etc/nginx/sites-available/btc-explorer.com.conf`
 
-    certbot --nginx -d explorer.btc21.org
+    certbot --nginx -d btc-explorer.com
     cd /etc/ssl/certs
     openssl dhparam -out dhparam.pem 4096
     cd /home/bitcoin

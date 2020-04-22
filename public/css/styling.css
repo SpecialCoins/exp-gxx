@@ -16,12 +16,24 @@ img.header-image {
 	margin-right: 10px;
 }
 
-code, .text-monospace {
-	font-family: "Source Code Pro", monospace !important;
+code, .monospace {
+	font-family: "Source Code Pro", monospace;
 }
 
-.text-small {
-	font-size: 80%;
+.card-body {
+	padding: 1.1em;
+}
+
+.details-table td {
+	border-top: none;
+	padding: 0.4em;
+	padding-right: 0.6em;
+}
+
+.properties-header {
+	width: 160px;
+	text-align: right;
+	font-weight: bold;
 }
 
 .popover {
@@ -29,28 +41,7 @@ code, .text-monospace {
 }
 
 .border-dotted {
-	border-bottom: 1px dotted #aaa;
-}
-
-.data-tag {
-	color: white;
-	border-radius: 0.25rem;
-	padding: 3px 6px;
-}
-
-.mb-tiny {
-	margin-bottom: 3px;
-}
-
-.mb-huge {
-	margin-bottom: 200px;
-}
-
-
-
-.nav-tabs .nav-link.active {
-	background-color: transparent;
-	border-color: #dee2e6 #dee2e6 #f8f9fa;
+	border-bottom: 1px dotted #777;
 }
 
 pre {
@@ -59,7 +50,6 @@ pre {
 	white-space: -pre-wrap;
 	white-space: -o-pre-wrap;
 	word-wrap: break-word;
-	margin-bottom: 0;
 }
 
 dd {
@@ -91,21 +81,7 @@ strong {
 	font-weight: 500;
 }
 
-
-
-.xindex-summary table tbody th, .xindex-summary table tbody td {
-	padding: 0;
-	padding-top: 0.3rem;
-	padding-bottom: 0.3rem;
-}
-
-.index-summary .summary-icon {
-	width: 20px;
-}
-
-
-
-.summary-table-label, .summary-table-content, .summary-split-table-label, .summary-split-table-content {
+.summary-table-label, .summary-table-content, .summary-split-table-label, .summary-split-table-content, .tx-io-label, .tx-io-content, .tx-io-desc, .tx-io-value {
 	position: relative;
 	width: 100%;
 	min-height: 1px;
@@ -114,17 +90,7 @@ strong {
 	margin-bottom: 5px;
 }
 
-.tx-io-label, .tx-io-content, .tx-io-desc, .tx-io-value {
-	position: relative;
-	width: 100%;
-	min-height: 1px;
-	padding-right: 0px;
-	padding-left: 0px;
-	margin-bottom: 2px;
-	float: left;
-}
-
-.summary-table-label, .summary-split-table-label {
+.summary-table-label, .summary-split-table-label, .tx-io-label {
 	font-weight: bold;
 }
 
@@ -178,8 +144,8 @@ strong {
 
 	.tx-io-label { max-width: 8%; }
 	.tx-io-content { max-width: 92%; }
-	.tx-io-desc { max-width: 65%; }
-	.tx-io-value { max-width: 35%; text-align: right; }
+	.tx-io-desc { max-width: 60%; }
+	.tx-io-value { max-width: 40%; text-align: right; padding-right: 25px; }
 }
 
 @media (min-width: 992px) {
@@ -204,7 +170,7 @@ strong {
 	.tx-io-label { max-width: 11%; }
 	.tx-io-content { max-width: 89%; }
 	.tx-io-desc { max-width: 60%; }
-	.tx-io-value { max-width: 40%; text-align: right; }
+	.tx-io-value { max-width: 40%; text-align: right; padding-right: 25px; }
 }
 
 @media (min-width: 1200px) {
@@ -213,27 +179,27 @@ strong {
 	}
 
 	.summary-table-label {
-		max-width: 13%;
+		max-width: 11%;
 		text-align: right;
 	}
 	.summary-table-content {
-		max-width: 87%;
+		max-width: 89%;
 		margin-bottom: 5px;
 	}
 
 	.summary-split-table-label {
-		max-width: 24%;
+		max-width: 22%;
 		text-align: right;
 	}
 	.summary-split-table-content {
-		max-width: 76%;
+		max-width: 78%;
 		margin-bottom: 5px;
 	}
 
-	.tx-io-label { max-width: 11%; }
-	.tx-io-content { max-width: 89%; }
-	.tx-io-desc { max-width: 69%; }
-	.tx-io-value { max-width: 31%; text-align: right; }
+	.tx-io-label { max-width: 9.5%; }
+	.tx-io-content { max-width: 90.5%; }
+	.tx-io-desc { max-width: 61%; }
+	.tx-io-value { max-width: 39%; text-align: right; padding-right: 25px; }
 }
 
 @media (min-width: 1920px) {
@@ -259,10 +225,10 @@ strong {
 		margin-bottom: 5px;
 	}
 
-	.tx-io-label { max-width: 7%; }
-	.tx-io-content { max-width: 93%; }
+	.tx-io-label { max-width: 6.5%; }
+	.tx-io-content { max-width: 93.5%; }
 	.tx-io-desc { max-width: 70%; }
-	.tx-io-value { max-width: 30%; text-align: right; }
+	.tx-io-value { max-width: 30%; text-align: right; padding-right: 25px; }
 }
 
 

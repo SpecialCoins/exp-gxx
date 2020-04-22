@@ -12,7 +12,7 @@
       "name": "Huobi.pool",
       "link": "https://www.poolhb.com/"
     },
-    "/E2M & BTC.TOP/": {
+    "/E2M & GXX.TOP/": {
       "name": "WAYI.CN",
       "link": "http://www.easy2mine.com/"
     },
@@ -20,8 +20,8 @@
       "name": "CanoePool",
       "link": "https://www.canoepool.com/"
     },
-    "/BTC.TOP/": {
-      "name": "BTC.TOP",
+    "/GXX.TOP/": {
+      "name": "GXX.TOP",
       "link": "http://www.btc.top/"
     },
     "pool.bitcoin.com": {
@@ -53,15 +53,15 @@
       "link": "https://bitcoin-russia.ru"
     },
     "btcserv": {
-      "name": "BTCServ",
+      "name": "GXXServ",
       "link": "http://btcserv.net/"
     },
     "simplecoin": {
       "name": "simplecoin.us",
       "link": "http://simplecoin.us/"
     },
-    "BTC Guild": {
-      "name": "BTC Guild",
+    "GXX Guild": {
+      "name": "GXX Guild",
       "link": "http://www.btcguild.com/"
     },
     "Eligius": {
@@ -80,8 +80,8 @@
       "name": "EclipseMC",
       "link": "https://eclipsemc.com/"
     },
-    "MaxBTC": {
-      "name": "MaxBTC",
+    "MaxGXX": {
+      "name": "MaxGXX",
       "link": "http://maxbtc.com/"
     },
     "triplemining": {
@@ -96,8 +96,8 @@
       "name": "CoinLab",
       "link": "http://coinlab.com/"
     },
-    "50BTC": {
-      "name": "50BTC",
+    "50GXX": {
+      "name": "50GXX",
       "link": "https://www.50btc.com/"
     },
     "ghash.io": {
@@ -212,20 +212,20 @@
       "name": "Bitcoin Affiliate Network",
       "link": "https://mining.bitcoinaffiliatenetwork.com/"
     },
-    "BTCChina Pool": {
-      "name": "BTCC",
+    "GXXChina Pool": {
+      "name": "GXXC",
       "link": "https://pool.btcc.com/"
     },
     "btcchina.com": {
-      "name": "BTCC",
+      "name": "GXXC",
       "link": "https://pool.btcc.com/"
     },
-    "BTCChina.com": {
-      "name": "BTCC",
+    "GXXChina.com": {
+      "name": "GXXC",
       "link": "https://pool.btcc.com/"
     },
-    "/BTCC/": {
-      "name": "BTCC",
+    "/GXXC/": {
+      "name": "GXXC",
       "link": "https://pool.btcc.com/"
     },
     "BW Pool": {
@@ -257,15 +257,15 @@
       "link": "https://21.co/"
     },
     "/agentD/": {
-      "name": "digitalBTC",
+      "name": "digitalGXX",
       "link": "http://digitalbtc.com/"
     },
     "/八宝池 8baochi.com/": {
       "name": "8baochi",
       "link": "http://8baochi.com/"
     },
-    "myBTCcoin Pool": {
-      "name": "myBTCcoin Pool",
+    "myGXXcoin Pool": {
+      "name": "myGXXcoin Pool",
       "link": "http://mybtccoin.com/"
     },
     "TBDice": {
@@ -296,12 +296,12 @@
       "name": "1Hash",
       "link": "http://www.1hash.com/"
     },
-    "/HaoBTC/": {
+    "/HaoGXX/": {
       "name": "Bixin",
       "link": "https://haopool.com/"
     },
     "viabtc.com deploy": {
-      "name": "ViaBTC",
+      "name": "ViaGXX",
       "link": "https://viabtc.com"
     },
     "/bmgpool.com/": {
@@ -312,12 +312,12 @@
       "name": "coingeek.com",
       "link": ""
     },
-    "/ViaBTC/": {
-      "name": "ViaBTC",
+    "/ViaGXX/": {
+      "name": "ViaGXX",
       "link": "http://viabtc.com/"
     },
-    "/ConnectBTC - Home for Miners/": {
-      "name": "ConnectBTC",
+    "/ConnectGXX - Home for Miners/": {
+      "name": "ConnectGXX",
       "link": "https://www.connectbtc.com/"
     },
     "/BATPOOL/": {
@@ -332,8 +332,8 @@
       "name": "Waterhole",
       "link": "https://btc.waterhole.io/"
     },
-    "/BTC.COM/": {
-      "name": "BTC.com",
+    "/GXX.COM/": {
+      "name": "GXX.com",
       "link": "https://pool.btc.com"
     },
     "/DCExploration/": {
@@ -563,7 +563,7 @@
       "link": "https://eclipsemc.com/"
     },
     "1BwZeHJo7b7M2op7VDfYnsmcpXsUYEcVHm": {
-      "name": "BTC Nuggets",
+      "name": "GXX Nuggets",
       "link": "http://104.197.8.250/"
     },
     "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY": {
@@ -615,7 +615,7 @@
       "link": "https://21.co/"
     },
     "1MimPd6LrPKGftPRHWdfk8S3KYBfN4ELnD": {
-      "name": "digitalBTC",
+      "name": "digitalGXX",
       "link": "http://digitalbtc.com/"
     },
     "1NY15MK947MLzmPUa2gL7UgyR8prLh2xfu": {
@@ -647,11 +647,11 @@
       "link": "http://www.telco214.com/"
     },
     "152f1muMCNa7goXYhYAQC61hxEgGacmncB": {
-      "name": "BTCC",
+      "name": "GXXC",
       "link": "https://pool.btcc.com/"
     },
     "1PmRrdp1YSkp1LxPyCfcmBHDEipG5X4eJB": {
-      "name": "BTC Pool Party",
+      "name": "GXX Pool Party",
       "link": "https://btcpoolparty.com/"
     },
     "1Hk9gD8xMo2XBUhE73y5zXEM8xqgffTB5f": {
@@ -659,7 +659,7 @@
       "link": "http://8baochi.com/"
     },
     "151T7r1MhizzJV6dskzzUkUdr7V8JxV2Dx": {
-      "name": "myBTCcoin Pool",
+      "name": "myGXXcoin Pool",
       "link": "http://www.mybtccoin.com/"
     },
     "1MFsp2txCPwMMBJjNNeKaduGGs8Wi1Ce7X": {
@@ -679,7 +679,7 @@
       "link": "http://sha256.transactioncoinmining.com/"
     },
     "15MxzsutVroEE9XiDckLxUHTCDAEZgPZJi": {
-      "name": "BTCDig",
+      "name": "GXXDig",
       "link": "https://btcdig.com/"
     },
     "1GBo1f2tzVx5jScV9kJXPUP9RjvYXuNzV7": {
@@ -687,7 +687,7 @@
       "link": "https://nexious.com/"
     },
     "1AePMyovoijxvHuKhTqWvpaAkRCF4QswC6": {
-      "name": "Tricky's BTC Pool",
+      "name": "Tricky's GXX Pool",
       "link": "http://pool.wemine.uk/"
     },
     "17judvK4AC2M6KhaBbAEGw8CTKc9Pg8wup": {
@@ -695,7 +695,7 @@
       "link": "https://hotpool.co/"
     },
     "1jKSjMLnDNup6NPgCjveeP9tUn4YpT94Y": {
-      "name": "BTCMP",
+      "name": "GXXMP",
       "link": "https://www.btcmp.com/"
     },
     "1MPxhNkSzeTNTHSZAibMaS8HS1esmUL1ne": {
@@ -723,19 +723,19 @@
       "link": "http://patelsminingpool.com/"
     },
     "18cBEMRxXHqzWWCxZNtU91F5sbUNKhL5PX": {
-      "name": "ViaBTC",
+      "name": "ViaGXX",
       "link": "http://viabtc.com/"
     },
     "3NA8hsjfdgVkmmVS9moHmkZsVCoLxUkvvv": {
-      "name": "BTC.com",
+      "name": "GXX.com",
       "link": "https://pool.btc.com"
     },
     "34qkc2iac6RsyxZVfyE2S5U5WcRsbg2dpK": {
-      "name": "BTC.com",
+      "name": "GXX.com",
       "link": "https://pool.btc.com"
     },
     "3EhLZarJUNSfV6TWMZY1Nh5mi3FMsdHa5U": {
-      "name": "BTC.com",
+      "name": "GXX.com",
       "link": "https://pool.btc.com"
     },
     "18EPLvrs2UE11kWBB3ABS7Crwj5tTBYPoa": {
@@ -743,7 +743,7 @@
       "link": "http://www.gogreenlight.se/"
     },
     "1KPQkehgYAqwiC6UCcbojM3mbGjURrQJF2": {
-      "name": "ConnectBTC",
+      "name": "ConnectGXX",
       "link": "https://www.connectbtc.com/"
     },
     "167ApWWxUSFQmz2jdz9xop3oAKdLejvMML": {
@@ -779,7 +779,7 @@
       "link": "https://www.58coin.com/"
     },
     "1Cs5RT9SRk1hxsdzivAfkjesNmVVJqfqkw": {
-      "name": "EkanemBTC",
+      "name": "EkanemGXX",
       "link": "https://ekanembtc.com/"
     },
     "13Sd8Y7nUao3z4bJFkZvCRXpFqHvLy49YY": {
@@ -815,7 +815,7 @@
       "link": "https://www.brainofshawn.com"
     },
     "1Hz96kJKF2HLPGY15JWLB5m9qGNxvt8tHJ": {
-      "name": "BTC.TOP",
+      "name": "GXX.TOP",
       "link": "http://btc.top"
     },
     "1Afcpc2FpPnREU6i52K3cicmHdvYRAH9Wo": {

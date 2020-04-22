@@ -8,11 +8,11 @@ const args = require('meow')(`
       -p, --port <port>              port to bind http server [default: 3002]
       -i, --host <host>              host to bind http server [default: 127.0.0.1]
       -a, --basic-auth-password <..> protect web interface with a password [default: no password]
-      -C, --coin <coin>              crypto-coin to enable [default: BTC]
+      -C, --coin <coin>              crypto-coin to enable [default: GXX]
 
       -b, --bitcoind-uri <uri>       connection URI for bitcoind rpc (overrides the options below)
       -H, --bitcoind-host <host>     hostname for bitcoind rpc [default: 127.0.0.1]
-      -P, --bitcoind-port <port>     port for bitcoind rpc [default: 8332]
+      -P, --bitcoind-port <port>     port for bitcoind rpc [default: 29100]
       -c, --bitcoind-cookie <path>   path to bitcoind cookie file [default: ~/.bitcoin/.cookie]
       -u, --bitcoind-user <user>     username for bitcoind rpc [default: none]
       -w, --bitcoind-pass <pass>     password for bitcoind rpc [default: none]
@@ -25,7 +25,6 @@ const args = require('meow')(`
       --cookie-secret <secret>       secret key for signed cookie hmac generation [default: hmac derive from bitcoind pass]
       --demo                         enable demoSite mode [default: disabled]
       --no-rates                     disable fetching of currency exchange rates [default: enabled]
-      --slow-device-mode             disable performance-intensive tasks (e.g. UTXO set fetching) [default: enabled]
       --privacy-mode                 enable privacyMode to disable external data requests [default: disabled]
       --max-mem <bytes>              value for max_old_space_size [default: 1024 (1 GB)]
 
@@ -45,7 +44,7 @@ const args = require('meow')(`
       $ btc-rpc-explorer -b bitcoin://127.0.0.1:18443/?cookie=$HOME/.bitcoin/regtest/.cookie
 
     All options may also be specified as environment variables
-      $ BTCEXP_PORT=8080 BTCEXP_BITCOIND_PORT=18443 BTCEXP_BITCOIND_COOKIE=~/.bitcoin/regtest/.cookie btc-rpc-explorer
+      $ GXXEXP_PORT=8080 GXXEXP_BITCOIND_PORT=18443 GXXEXP_BITCOIND_COOKIE=~/.bitcoin/regtest/.cookie btc-rpc-explorer
 
 
 `, { flags: { port: {alias:'p'}, host: {alias:'i'}, basicAuthPassword: {alias:'a'}, coin: {alias:'C'}
@@ -53,15 +52,15 @@ const args = require('meow')(`
             , bitcoindCookie: {alias:'c'}, bitcoindUser: {alias:'u'}, bitcoindPass: {alias:'w'}
             , demo: {type:'boolean'}, rpcAllowall: {type:'boolean'}, electrumxServers: {alias:'E'}
             , nodeEnv: {alias:'e', default:'production'}
-            , privacyMode: {type:'boolean'}, slowDeviceMode: {type:'boolean'}
+            , privacyMode: {type:'boolean'}
             } }
 ).flags;
 
 const envify = k => k.replace(/([A-Z])/g, '_$1').toUpperCase();
 
 Object.keys(args).filter(k => k.length > 1).forEach(k => {
-  if (args[k] === false) process.env[`BTCEXP_NO_${envify(k)}`] = true;
-  else process.env[`BTCEXP_${envify(k)}`] = args[k];
+  if (args[k] === false) process.env[`GXXEXP_NO_${envify(k)}`] = true;
+  else process.env[`GXXEXP_${envify(k)}`] = args[k];
 })
 
 require('./www');

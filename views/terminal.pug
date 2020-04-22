@@ -4,28 +4,28 @@ block headContent
 	title RPC Terminal
 
 block content
-	div.row
-		div.col
+	div(class="row")
+		div(class="col")
 			h1.h3 RPC Terminal
 
-		div.col
+		div(class="col")
 			if (!config.demoSite && (!config.credentials.rpc || !config.credentials.rpc.rpc))
 				span(style="float: right;")
-					a.btn.btn-secondary(href="/disconnect") Disconnect from node
+					a(href="/disconnect", class="btn btn-secondary") Disconnect from node
 	
 	hr
 
 	:markdown-it
 		Use this interactive terminal to send RPC commands to your node. Results will be shown inline. To browse all available RPC commands you can use the [RPC Browser](/rpc-browser).
 
-	div.card.shadow-sm.mb-3
-		div.card-body
+	div(class="card mb-3 shadow-sm")
+		div(class="card-body")
 			form(id="terminal-form")
-				div.form-group
+				div(class="form-group")
 					label(for="input-cmd") Command
-					input.form-control(type="text", id="input-cmd", name="cmd")
+					input(type="text", id="input-cmd", name="cmd", class="form-control")
 
-				input.btn.btn-primary.btn-block(type="submit", value="Send")
+				input(type="submit", class="btn btn-primary btn-block", value="Send")
 
 	hr
 	

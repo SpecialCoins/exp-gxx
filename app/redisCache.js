@@ -11,43 +11,40 @@ if (config.redisUrl) {
 	redisClient = redis.createClient({url:config.redisUrl});
 }
 
-function createCache(keyPrefix, onCacheEvent) {
-	return {
-		get: function(key) {
-			var prefixedKey = `${keyPrefix}-${key}`;
-
-			return new Promise(function(resolve, reject) {
-				onCacheEvent("redis", "try", key);
-
-				redisClient.getAsync(prefixedKey).then(function(result) {
-					if (result == null) {
-						onCacheEvent("redis", "miss", key);
-
-						resolve(null);
-
-					} else {
-						onCacheEvent("redis", "hit", key);
-
-						resolve(JSON.parse(result));
-					}
-				}).catch(function(err) {
-					onCacheEvent("redis", "error", key);
-
-					utils.logError("328rhwefghsdgsdss", err);
-
-					reject(err);
-				});
-			});
-		},
-		set: function(key, obj, maxAgeMillis) {
-			var prefixedKey = `${keyPrefix}-${key}`;
-
-			redisClient.set(prefixedKey, JSON.stringify(obj), "PX", maxAgeMillis);
-		}
-	};
+function onCacheEvent(cacheType, hitOrMiss, cacheKey) {
+	//console.log(`cache.${cacheType}.${hitOrMiss}: ${cacheKey}`);
 }
+
+var redisCache = {
+	get:function(key) {
+		return new Promise(function(resolve, reject) {
+			redisClient.getAsync(key).then(function(result) {
+				if (result == null) {
+					onCacheEvent("redis", "miss", key);
+
+					resolve(null);
+
+					return;
+				}
+
+				onCacheEvent("redis", "hit", key);
+
+				resolve(JSON.parse(result));
+
+			}).catch(function(err) {
+				utils.logError("328rhwefghsdgsdss", err);
+
+				reject(err);
+			});
+		});
+	},
+	set:function(key, obj, maxAgeMillis) {
+		redisClient.set(key, JSON.stringify(obj), "PX", maxAgeMillis);
+	}
+};
 
 module.exports = {
 	active: (redisClient != null),
-	createCache: createCache
+	get: redisCache.get,
+	set: redisCache.set
 }

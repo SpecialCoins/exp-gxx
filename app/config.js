@@ -152,8 +152,8 @@ module.exports = {
 				{
 					title:"Related Sites",
 					links:[
-                        {name: "BitcoinZero Explorer", url:"http://51.77.145.35:3002/blocks/", imgUrl:"/img/logo/logobzx.svg"},
-                        {name: "BitcoinCZ Explorer", url:"http://51.91.156.252:3000/", imgUrl:"/img/logo/logobcz.svg"},
+                        {name: "BitcoinZero Explorer", url:"www.specialcoins-bzx-explorer.ovh//", imgUrl:"/img/logo/logobzx.svg"},
+                        {name: "BitcoinCZ Explorer", url:"www.specialcoins-bcz-explorer.ovh/", imgUrl:"/img/logo/logobcz.svg"},
                         {name: "GitHub", url:"https://github.com/SpecialCoins/", imgUrl:"/img/logo/github.svg"},
 					]
 				}
